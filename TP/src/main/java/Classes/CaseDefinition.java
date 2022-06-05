@@ -25,7 +25,7 @@ public class CaseDefinition extends CaseQuestion
     {
         this.num=num;
         qstpos = (qstpos + 1) % 8;
-        String keys[] = new String[]{"Walk", "Eat", "Teacher", "Cat", "Sing", "Study", "Puppy", "Run"};
+        String keys[] = new String[]{"walk", "eat", "teacher", "cat", "sing", "study", "puppy", "run"};
 
         this.mot=keys[qstpos];
         this.definition= Jeu.mots_def.get(mot);

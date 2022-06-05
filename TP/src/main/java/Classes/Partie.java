@@ -8,10 +8,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.lang.reflect.Array;
 import  java.util.concurrent.ThreadLocalRandom;
 import java.util.Arrays;
@@ -22,7 +19,7 @@ import java.util.Arrays;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Partie
+public class Partie  implements Serializable
 {
     // instance variables - replace the example below with your own
     public Case plateau[] = new Case[100];

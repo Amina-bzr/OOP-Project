@@ -1,5 +1,8 @@
 package Classes;
-public class Joueur
+
+import java.io.Serializable;
+
+public class Joueur implements Serializable
 {
     // instance variables - replace the example below with your own
     private String nom;
