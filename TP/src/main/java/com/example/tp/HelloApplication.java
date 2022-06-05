@@ -38,11 +38,14 @@ public class HelloApplication extends Application {
         Button valider = new Button("Jouer!");
         Button desir =new Button("desirialisation") ;
         VBox panneau = new VBox(t1,t2,nom_input,valider ,desir);
+        panneau.getStyleClass().add("form");
+        panneau.setAlignment(Pos.CENTER);
+        HBox menu = new HBox(new ImageView(new Image("file:src/main/java/assets/wallpaper.png")),panneau);
 
-        panneau.getStyleClass().add("form_login");
+        menu.getStyleClass().add("form_login");
 
 
-        Scene scene = new Scene(panneau,600,300);
+        Scene scene = new Scene(menu,1000,585);
 
         /*  */
 
@@ -52,7 +55,7 @@ public class HelloApplication extends Application {
                 Partie p = null;
 
                 try {
-                    FileInputStream fileIn = new FileInputStream("serialistion.txt");
+                    FileInputStream fileIn = new FileInputStream(nom_input.getText() + ".txt");
                     ObjectInputStream in = new ObjectInputStream(fileIn);
                     p = (Partie) in.readObject();
                     in.close();
@@ -63,6 +66,8 @@ public class HelloApplication extends Application {
                     stage.setTitle("Jeu Spirale");
                     stage.setScene(scene);
                     stage.show();
+                }catch (FileNotFoundException E) {
+                    System.out.println("vous n'avez pas sauvegarder une partie");
 
                 } catch (IOException i) {
                     i.printStackTrace();
@@ -73,14 +78,8 @@ public class HelloApplication extends Application {
                     return;
                 }
 
-                System.out.println("Deserialized joueur..");
-                System.out.println("Name: " +p.getJoueur().getNom());
-                System.out.println("SCore : " +p.getJoueur().getScore());
-                System.out.println("Position: " +p.getJoueur().getPosition());
-                for (int i=0 ;i<p.plateau.length ;i++){
-                    System.out.print(i);
-                    System.out.println(p.plateau[i].getColor())  ;
-                }
+
+
 
 
             }});
@@ -115,6 +114,7 @@ public class HelloApplication extends Application {
         scene.getStylesheets().add("file:src/main/java/css/style.css");
         stage.setTitle("Jeu Spirale");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
 
 

@@ -6,21 +6,32 @@
     }
 
     .entete {
-        -fx-background-color: "pink";
+        -fx-background-color: "#00CED1";
         -fx-padding: 10 25;
         -fx-spacing: 45;
     }
 
 
     .form_login {
-        -fx-padding: 15 10;
         -fx-spacing: 10;
-        -fx-color: "black";
+
         -fx-font-size: 20px;
-        -fx-background-color: "pink";
+        -fx-background-color: "#00CED1";
     }
 
     .fenetre_case_image {
         -fx-padding:25;
         -fx-font-size: 30px;
+    }
+
+    Button {
+
+        -fx-background-color: "yellow";
+        -fx-border-radius: 100px;
+        -fx-padding: 13 9;
+    }
+
+    .form {
+    -fx-spacing: 10;
+    -fx-padding: 35px;
     }

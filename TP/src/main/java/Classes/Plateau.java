@@ -27,13 +27,15 @@ public class Plateau {
         Text destination = new Text("Lancez les dés!");
         score.setText("score: "+partie.getJoueur().getScore());
         BorderPane main = new BorderPane();
-        HBox entete = new HBox(new Text(partie.getJoueur().getNom()), score, position, destination);
+        Button susp=new Button("suspendre");
+        VBox entete = new VBox(new HBox (new ImageView(new Image("file:src/main/java/assets/joueur.jpg")),new Text("  "),new Text(partie.getJoueur().getNom())), score, position, destination,susp);
         entete.getStyleClass().add("entete");
-        main.setTop(entete);
+        main.setRight(entete);
 
         Case  plateau_code[] = partie.plateau; //le plateau encodé dans un tableau 1d
         StackPane stack = new StackPane(); //stackpane qui va contenir le plateau
         GridPane plateau = new GridPane(); //l'interface graphique du plateau
+
         plateau.setHgap(10);
         plateau.setVgap(10);
 
@@ -43,6 +45,7 @@ public class Plateau {
         ImageView de1 = new ImageView();
         ImageView de2 = new ImageView();
         HBox des = new HBox(de1, de2);
+
         des.getStyleClass().add("hbox");
         //---- button LANCER ------
         Button lancer = new Button("Lancer");
@@ -64,14 +67,13 @@ public class Plateau {
 
         //--FIN----
         // suspendre le jeu
-        Button susp=new Button("suspendre");
 
         susp.setOnAction(new EventHandler<ActionEvent>(){
             public void handle(ActionEvent actionEvent) {
 
                 Partie p =partie ;
                 try {
-                    FileOutputStream fileOut =  new FileOutputStream("serialistion.txt");
+                    FileOutputStream fileOut =  new FileOutputStream(partie.getJoueur().getNom()+".txt");
                     ObjectOutputStream out = new ObjectOutputStream(fileOut);
                     out.writeObject(p);
                     out.close();
@@ -84,7 +86,6 @@ public class Plateau {
         //Remplissage du borderpane
         main.setCenter(plateau);
         main.setLeft(des_lancer);
-        main.setRight(susp);
 
 
         //---
