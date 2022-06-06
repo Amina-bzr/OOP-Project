@@ -2,6 +2,7 @@ package Classes;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -78,6 +79,15 @@ public class Plateau {
                     out.writeObject(p);
                     out.close();
                     fileOut.close();
+                    Stage popupwindow=new Stage();
+                    popupwindow.initModality(Modality.APPLICATION_MODAL);
+                    popupwindow.setTitle("Sauvegarde réussie!");
+                    HBox erreur = new HBox(new Text("Votre partie a été enregistré avec succés!"));
+                    erreur.getStyleClass().add("poppup");
+                    Scene scene1= new Scene(erreur, 500, 150);
+                    popupwindow.setScene(scene1);
+                    scene1.getStylesheets().add("file:src/main/java/css/style.css");
+                    popupwindow.showAndWait();
                     System.out.printf("Serialized data is saved ");
                 } catch (IOException i) {
                     i.printStackTrace();
@@ -86,7 +96,8 @@ public class Plateau {
         //Remplissage du borderpane
         main.setCenter(plateau);
         main.setLeft(des_lancer);
-
+        main.setMargin(plateau, new Insets(10,0,0,10));
+        main.setMargin(des_lancer, new Insets(10,10,0,0));
 
         //---
 
@@ -99,10 +110,11 @@ public class Plateau {
         int b = 9;
         int col;
         int l;
-
+        ImageView cercle = new ImageView("file:src/main/java/assets/cercle.png");
         //Logique de création du plateau
         while (a <= 4 && b >= 5) {
             for (l = a; l <= b; l++) {
+
                 col = a;
                 System.out.println("la ligne est :" + Integer.toString(l));
                 System.out.println("la colone  est :" + Integer.toString(col));
@@ -125,7 +137,6 @@ public class Plateau {
                                     destination.setText("Lancez le dé! ");
                                 }*/
                                 else if (c.getNum()==99) { //case fin
-                                    System.out.println(99);
                                     try {
                                         partie.TerminerPartie();}
                                     catch (Exception e) {
@@ -134,8 +145,13 @@ public class Plateau {
                                 } else { //on affiche la pos auquelle il doit deplacer sinon
                                     destination.setText("Partez vers la case: " + partie.getJoueur().getPosition());
                                 }
-                                btn.setGraphic(new ImageView("file:src/main/java/assets/cercle.png")); //set Icon
+                                plateau.getChildren().removeAll(cercle);
+                                /*for ( int u=0; u<99; u++ ) {
+                                    (plateau.getChildren().get(u)).;
+                                }*/
+                                btn.setGraphic(cercle); //set Icon
                                 btn.setGraphicTextGap(3);
+
                                 score.setText("score: "+partie.getJoueur().getScore());
 
                             } else {
@@ -193,8 +209,9 @@ public class Plateau {
                                 } else { //on affiche la pos auquelle il doit deplacer sinon
                                     destination.setText("Partez vers la case: " + partie.getJoueur().getPosition());
                                 }
-                                btn.setGraphic(new ImageView("file:src/main/java/assets/cercle.png")); //set Icon
-                                btn.setGraphicTextGap(3);
+                                plateau.getChildren().removeAll(cercle);
+                                btn.setGraphic(cercle); //set Icon
+                                btn.setGraphicTextGap(1);
                                 score.setText("score: "+partie.getJoueur().getScore());
 
                             } else {
@@ -251,7 +268,8 @@ public class Plateau {
                                 } else { //on affiche la pos auquelle il doit deplacer sinon
                                     destination.setText("Partez vers la case: " + partie.getJoueur().getPosition());
                                 }
-                                btn.setGraphic(new ImageView("file:src/main/java/assets/cercle.png")); //set Icon
+                                plateau.getChildren().removeAll(cercle);
+                                btn.setGraphic(cercle); //set Iconcon
                                 btn.setGraphicTextGap(3);
                                 score.setText("score: "+partie.getJoueur().getScore());
 
@@ -309,7 +327,9 @@ public class Plateau {
                                 } else { //on affiche la pos auquelle il doit deplacer sinon
                                     destination.setText("Partez vers la case: " + partie.getJoueur().getPosition());
                                 }
-                                btn.setGraphic(new ImageView("file:src/main/java/assets/cercle.png")); //set Icon
+
+                                plateau.getChildren().removeAll(cercle);
+                                btn.setGraphic(cercle); //set Icon
                                 btn.setGraphicTextGap(3);
                                 score.setText("score: "+partie.getJoueur().getScore());
 

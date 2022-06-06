@@ -33,14 +33,14 @@ public class Jeu
         mots_imgs.put("Puppy", "src/main/java/assets/puppy.jpg");
         mots_imgs.put("Run", "src/main/java/assets/run.jpg");
         //init def_mots
-        mots_def.put("Walk", "marcher");
-        mots_def.put("Eat", "manger");
-        mots_def.put("Teacher", "enseignant");
-        mots_def.put("Cat", "chat");
-        mots_def.put("Sing", "chanter");
-        mots_def.put("Study", "etudier");
-        mots_def.put("Puppy", "chien");
-        mots_def.put("Run", "courrir");
+        mots_def.put("walk", "marcher");
+        mots_def.put("eat", "manger");
+        mots_def.put("teacher", "enseignant");
+        mots_def.put("cat", "chat");
+        mots_def.put("sing", "chanter");
+        mots_def.put("study", "etudier");
+        mots_def.put("puppy", "chien");
+        mots_def.put("run", "courrir");
     }
 
     

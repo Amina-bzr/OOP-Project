@@ -36,7 +36,7 @@ public class HelloApplication extends Application {
         Text t2 = new Text("Entrez votre nom!");
         TextField nom_input = new TextField("Entrez votre nom..");
         Button valider = new Button("Jouer!");
-        Button desir =new Button("desirialisation") ;
+        Button desir =new Button("Reprendre") ;
         VBox panneau = new VBox(t1,t2,nom_input,valider ,desir);
         panneau.getStyleClass().add("form");
         panneau.setAlignment(Pos.CENTER);
@@ -67,7 +67,15 @@ public class HelloApplication extends Application {
                     stage.setScene(scene);
                     stage.show();
                 }catch (FileNotFoundException E) {
-                    System.out.println("vous n'avez pas sauvegarder une partie");
+                    Stage popupwindow=new Stage();
+                    popupwindow.initModality(Modality.APPLICATION_MODAL);
+                    popupwindow.setTitle("Erreur!");
+                    HBox erreur = new HBox(new Text("vous n'avez pas sauvegarder une partie.."));
+                    erreur.getStyleClass().add("poppup");
+                    Scene scene1= new Scene(erreur, 500, 150);
+                    popupwindow.setScene(scene1);
+                    scene1.getStylesheets().add("file:src/main/java/css/style.css");
+                    popupwindow.showAndWait();
 
                 } catch (IOException i) {
                     i.printStackTrace();
@@ -114,7 +122,6 @@ public class HelloApplication extends Application {
         scene.getStylesheets().add("file:src/main/java/css/style.css");
         stage.setTitle("Jeu Spirale");
         stage.setScene(scene);
-        stage.setResizable(false);
         stage.show();
 
 

@@ -49,10 +49,11 @@ public class CaseDefinition extends CaseQuestion
 
         //
         TextField rep = new TextField();
+
         rep.setPromptText("Entrer votre réponse");
         //rep.setPrefColumnCount((Jeu.mots_def.get("Walk")).length());// !!!!!!!!!!!!!!!!
 
-        Text resultat = new Text();
+        Text resultat = new Text("La réponse contient "+(this.mot).length()+" lettres!");
         Button valid = new Button("valider");
         Button close = new Button("Sortir");
         valid.setOnAction(new EventHandler<ActionEvent>() {
@@ -62,7 +63,7 @@ public class CaseDefinition extends CaseQuestion
             @Override
             public void handle(ActionEvent event) {
                 String reponse = rep.getText();
-
+                valid.setDisable(true);
                 if (tester(reponse) == true) {
                     resultat.setText("reponse correcte");
                     resultat.setFill(Color.GREEN);
@@ -70,7 +71,7 @@ public class CaseDefinition extends CaseQuestion
                     j.modifScore(20);
 
                 } else {
-                    resultat.setText("reponse non correcte");
+                    resultat.setText("reponse incorrecte");
                     resultat.setFill(Color.RED);
                     j.modifScore(-10);
                 }

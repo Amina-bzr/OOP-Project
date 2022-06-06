@@ -3,6 +3,9 @@ j,100
 1,0
 amina,0
 h,0
-Entrez votre nom..,0
+Entrez votre nom..,40
 m,0
 mina,0
+Mina,0
+Assia,0
+inass,30

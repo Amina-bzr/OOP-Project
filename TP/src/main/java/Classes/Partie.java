@@ -1,9 +1,16 @@
 package Classes;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -124,7 +131,6 @@ public class Partie  implements Serializable
             } //sauvegarde du meilleur joueur ~~~~FIN
 
             if (mots[0].compareTo(joueur.getNom())==0) {
-                System.out.println("on va chenger le score ");
                 if (joueur.getScore()> Integer.parseInt(mots[1])) {
                     mots[1]=Integer.toString(joueur.getScore());
                     record_personnel = new VBox(new Text("Félicitations!! vous avez dépasser votre meilleur score!"),new Text("Votre meilleur score: "+mots[1]),new Text("votre score actuelle: "+joueur.getScore()));
@@ -140,16 +146,22 @@ public class Partie  implements Serializable
         Text resultat= new Text();
         VBox abattu = new VBox(resultat,meilleur);
         if ((mailleur_joueur[0].compareTo(joueur.getNom()))==0){
-            resultat.setText("u're the king bruh!");
+            resultat.setText("vous étes le roi du Spirale!!");
         }
-        meilleur.setText("the king is: "+mailleur_joueur[0]+"\n score: "+mailleur_joueur[1]);
+        meilleur.setText("Le meilleur joueur est: "+mailleur_joueur[0]+"\n score: "+mailleur_joueur[1]);
         FileWriter f = new FileWriter("joueurs_meilleur_score.txt",false);
         f.write(fichier);
         f.close();
-        VBox container = new VBox(record_personnel,abattu);
-        Scene scene1= new Scene(container, 600, 600);
+        Text fin = new Text("Fin de Partie");
+        fin.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
+        fin.setFill(Color.WHITE);
+        HBox fin_heading = new HBox (fin,new ImageView(new Image("file:src/main/java/assets/felicitations.png")));
+        VBox container = new VBox(fin_heading,record_personnel,abattu);
+        container.setAlignment(Pos.CENTER);
+        container.getStyleClass().add("affichage_fin_partie");
+        Scene scene1= new Scene(container, 500, 500);
+        scene1.getStylesheets().add("file:src/main/java/css/style.css");
         popupwindow.setScene(scene1);
-
         popupwindow.showAndWait();
 
 

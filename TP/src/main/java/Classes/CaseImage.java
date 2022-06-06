@@ -56,13 +56,13 @@ public class CaseImage extends CaseQuestion
         popupwindow.setTitle("Selectionnez la bonne image!");
         GridPane btns_grid= new GridPane();
         btns_grid.setGridLinesVisible(true);
-
+        Text resultat = new Text();
         //container of btns + title
-        VBox container = new VBox();
+        VBox container = new VBox(new Text( this.mot),btns_grid,resultat);
+        container.setSpacing(10);
+        container.setStyle("-fx-padding: 35px;");
         container.getStyleClass().add("fenetre_case_image");
-        container.getChildren().add( new Text( this.mot));
-        container.getChildren().add( btns_grid);
-
+        container.setAlignment(Pos.CENTER);
         //loop to initialize the grid of btns with proper images and give event handlers to imaged-btns
            //in the event handler we check whether the player introduced the correct answer
         int cpt =0;
@@ -80,15 +80,21 @@ public class CaseImage extends CaseQuestion
                 //event handler on selecting an image
                 btn.setOnAction(new EventHandler<ActionEvent>(){
                     public void handle(ActionEvent actionEvent) {
-
+                        for ( int i=0; i<4; i++ ) {
+                            btns_grid.getChildren().get(i).setDisable(true);
+                        }
                         if (tester(img)==true){
                             j.deplacer(4);
                             j.modifScore(20);
+                            resultat.setText("Bonne réponse!");
+                            resultat.setFill(Color.GREEN);
                         }else{
                             j.modifScore(-10);
+                            resultat.setText("réponse incorrecte..");
                             System.out.println("Lancez le dé");
+                            resultat.setFill(Color.RED);
                         }
-                        popupwindow.close();
+
                     }});
                 cpt++;
             }
